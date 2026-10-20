@@ -31,11 +31,15 @@ somigliano: l'ovale di Squirtle al cuore fatto con le mani, le due dita sul coll
 ## Uso
 
 ```bash
-last-call --camera trust      # avvia, poi nell'app di videochiamata scegli "OBS Virtual Camera"
+last-call                     # avvia, poi nell'app di videochiamata scegli "OBS Virtual Camera"
 last-call --list-cameras      # elenca le fotocamere
+last-call --camera 1          # usa un'altra fotocamera, per numero o parte del nome (es. --camera iphone)
 last-call --nome Gigi         # nome su manifesto funebre, lapide e testamento (predefinito: il tuo)
 last-call --preview --debug --no-virtualcam   # solo anteprima, con punti, gesto riconosciuto ed effetti attivi
 ```
+
+Senza `--camera` usa la prima fotocamera trovata. Va bene qualsiasi fotocamera del Mac: se non supporta
+1280×720 l'immagine viene ritagliata e scalata.
 
 Mentre gira, il terminale mostra un pannello con tutti i gesti: in giallo quello che sta vedendo (tienilo ancora
 un attimo), in verde gli effetti attivi. I messaggi interni di MediaPipe vanno in `~/Library/Logs/last-call.log`.
@@ -48,7 +52,8 @@ ma agli altri arrivano dritte. Su Zoom si può togliere in Impostazioni > Video 
 
 ## Installazione
 
-Serve un Mac con [OBS Studio](https://obsproject.com) (fornisce la webcam virtuale) e [uv](https://docs.astral.sh/uv/).
+Serve un Mac con Apple Silicon (M1 o successivi) e macOS 13 o successivo. Vanno installati a parte
+[OBS Studio](https://obsproject.com) 30 o successivo, che fornisce la webcam virtuale, e [uv](https://docs.astral.sh/uv/).
 
 ```bash
 git clone https://github.com/Piergiuseppe/last-call.git
@@ -56,14 +61,17 @@ cd last-call
 uv tool install --editable .
 ```
 
-I modelli di MediaPipe si scaricano da soli in `src/last_call/models/` al primo avvio.
+uv scarica da solo Python e tutte le librerie. I modelli di MediaPipe si scaricano al primo avvio in
+`src/last_call/models/`.
 
 ## Prima volta
 
-1. Impostazioni di Sistema > Generali > Elementi di login ed estensioni > Estensioni fotocamera:
+1. Aprire OBS, avviare la camera virtuale (pulsante in basso a destra), fermarla e chiudere OBS.
+   Serve una volta sola, per installare la webcam virtuale nel sistema.
+2. Impostazioni di Sistema > Generali > Elementi di login ed estensioni > Estensioni fotocamera:
    attivare "OBS Virtual Camera".
-2. Concedere la fotocamera all'app del terminale (macOS lo chiede al primo avvio).
-3. Alcuni gesti somigliano a quelli delle Reazioni di macOS (cuore, pace): se compaiono anche gli effetti di Apple,
+3. Concedere la fotocamera all'app del terminale (macOS lo chiede al primo avvio).
+4. Alcuni gesti somigliano a quelli delle Reazioni di macOS (cuore, pace): se compaiono anche gli effetti di Apple,
    disattivare Reazioni dal Centro di Controllo > Effetti video mentre il programma è in uso.
 
 ## Licenza
