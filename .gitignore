@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.ruff_cache/
+dist/
+.DS_Store
+src/last_call/models/

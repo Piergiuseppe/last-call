@@ -1,0 +1,26 @@
+[project]
+name = "last-call"
+version = "0.1.0"
+description = "Webcam virtuale con effetti attivati dai gesti delle mani"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "mediapipe>=1.1.1",
+    "numpy>=2.5.4",
+    "opencv-contrib-python>=5.0.0.93",
+    "pillow>=13.0.0",
+    "pyobjc-framework-avfoundation>=12.2.2",
+    "pyobjc-framework-libdispatch>=12.2.2",
+    "pyvirtualcam>=0.15.0",
+]
+
+[project.scripts]
+last-call = "last_call.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 130
